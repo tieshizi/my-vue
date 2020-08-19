@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='../assets/js/vue.js'></script>
+    <title>v-if&&v-else&&v-show</title>
+</head>
+
+<body>
+    <h1>v-if&&v-else&&v-show</h1>
+    <hr>
+    <div id='app'>
+        <div v-if='isLogin'>郝可可</div>
+        <div v-else='isLogin'>
+            <div v-if='isHappy'>开心，郝可可</div>
+            <div v-else='isHappy'>不开心，不让你登录</div>
+        </div>
+        <div v-show='isLogin'>郝可可</div>
+    </div>
+
+</body>
+<script type='text/javascript'>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isLogin: false,
+            isHappy: true
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='../assets/js/vue.js'></script>
+    <title>v-text&v-html实例</title>
+</head>
+
+<body>
+    <h1>v-text&v-html实例</h1>
+    <hr>
+    <div id='app'>
+        <h3 v-text='message'></h3>
+        <div v-html='message1'></div>
+    </div>
+</body>
+
+<script type='text/javascript'>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '我是可可',
+            message1: '<a href=#>我是郝可可</a>',
+        },
+    })
+
+</script>
+
+</html>

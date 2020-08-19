@@ -1,0 +1,14 @@
+{
+  "name": "vue01",
+  "version": "1.0.0",
+  "description": "再一次vue学习",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "keke",
+  "license": "ISC"
+}

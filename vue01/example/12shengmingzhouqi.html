@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='../assets/js/vue.js'></script>
+    <title>Vue生命周期</title>
+</head>
+
+<body>
+    <h1>Vue生命周期</h1>
+    <hr>
+    <div id="app">
+        <p>{{count}}</p>
+        <p><button @click="add">改变</button></p>
+    </div>
+    <p><button onclick="app.$destroy()">销毁</button></p>
+
+</body>
+<script type='text/javascript'>
+    // vue一共有10个钩子函数我们可以在某个钩子节点的时候做些事情，从组件实例化创建开始到销毁的过程
+    // beforeCreate,created
+    // beforeMount,mounted
+    // beforeUpdate,updated
+    // activated , deactivated
+    // beforeDestory,destoryed
+    // created:进行ajax请求异步数据的获取、初始化数据
+    // mounted:挂载元素dom节点的获取
+    // nextTick:针对单一事件更新数据后立即操作dom
+    // updated:任何数据的更新，如果要做统一的业务逻辑处理
+    // watch:监听数据变化，并做相应的处理
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            count: 1
+        },
+        methods: {
+            add: function () {
+                this.count++
+            }
+        },
+        beforeCreate: function () {
+            // 组件实例化之前执行的函数
+            console.group('------beforeCreate创建前状态，vue对象还没有诞生的时候，注入依赖项，可以做一个加载的动画------');
+            console.log("%c%s", "color:red", "el     : " + this.$el);
+            console.log("%c%s", "color:red", "data   : " + this.$data);
+            console.log("%c%s", "color:red", "count: " + this.count)
+        },
+        created: function () {
+            // 组建实例化完毕，但页面还未显示
+            // 结束loading 操作数据渲染dom
+            // 已经初始化了methods,data,computed,props，
+            // 如果有el就找template，有template就去执行这个具体的组件（或者是一个具体的div(outhtml)），执行render方法，如果template啥也没有，那就没有渲染的东西，也结束。
+            // 如果没有el, 等待调用$mount,如果两者都没有，直接结束
+            console.group('------created创建完毕状态------');
+            // 在created的时候数据已经和data属性进行绑定，在这个生命周期钩子函数中，我们可以获取到data的值并对它进行操作，但是dom还没有生成。
+            console.log("%c%s", "color:red", "el     : " + this.$el);
+            console.log("%c%s", "color:red", "data   : " + this.$data);
+            console.log("%c%s", "color:red", "count: " + this.count);
+        },
+        beforeMount: function () {
+            // 组件挂载前，页面未显示，但虚拟dom已经配置
+            console.group('------beforeMount挂载前状态------');
+            console.log("%c%s", "color:red", "el     : " + (this.$el));
+            console.log(this.$el);
+            console.log("%c%s", "color:red", "data   : " + this.$data);
+            console.log("%c%s", "color:red", "count: " + this.count);
+        },
+        mounted: function () {
+            // 组件挂载后，此方法执行后页面就显示出来了
+            console.group('------mounted 挂载结束状态------');
+            console.log("%c%s", "color:red", "el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red", "data   : " + this.$data);
+            console.log("%c%s", "color:red", "count: " + this.count);
+        },
+        beforeUpdate: function () {
+            // 组件更新之前，页面未展示，但虚拟dom已经配置
+            console.group('beforeUpdate 更新前状态===============》');
+            console.log("%c%s", "color:red", "el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red", "data   : " + this.$data);
+            console.log("%c%s", "color:red", "count: " + this.count);
+        },
+        updated: function () {
+            // 组建更新之后，此方法执行后页面就更新显示出来了
+            console.group('updated 更新完成状态===============》');
+            console.log("%c%s", "color:red", "el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red", "data   : " + this.$data);
+            console.log("%c%s", "color:red", "count: " + this.count);
+        },
+        beforeDestroy: function () {
+            // 组件销毁前
+            console.group('beforeDestroy 销毁前状态===============》');
+            console.log("%c%s", "color:red", "el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red", "data   : " + this.$data);
+            console.log("%c%s", "color:red", "count: " + this.count);
+        },
+        destroyed: function () {
+            // 组件销毁后
+            console.group('destroyed 销毁完成状态===============》');
+            console.log("%c%s", "color:red", "el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red", "data   : " + this.$data);
+            console.log("%c%s", "color:red", "count: " + this.count)
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='../assets/js/vue.js'></script>
+    <title>v-on实例</title>
+</head>
+
+<body>
+    <h1>v-on实例</h1>
+    <hr>
+    <div id="app">
+        总分数是：{{num}}
+        <div>
+            <input type="text" v-on:keyup.enter='onEnter' v-model='num1'>
+            <br>
+            <button v-on:click='onPlus'>加分</button>
+            <button @click='onMinus'>减分</button>
+        </div>
+    </div>
+</body>
+
+<script type='text/javascript'>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            num: 0,
+            num1: 1,
+        },
+        //构造器一个新属性，可以写很多方法
+        methods: {
+            onPlus: function () {
+                this.num++
+            },
+            onMinus: function () {
+                this.num--
+            },
+            onEnter: function () {
+                this.num = this.num + parseInt(this.num1)
+            }
+        }
+    })
+</script>
+
+</html>

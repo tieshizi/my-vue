@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='../assets/js/vue.js'></script>
+    <title>v-for实例</title>
+</head>
+
+<body>
+    <h1>v-for实例</h1>
+    <hr>
+    <div id='app'>
+        <ul>
+            <li v-for="item in sortdata1">{{item}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(item,index) in sortdata2">{{index+1}}:{{item.name}}---------{{item.age}}</li>
+        </ul>
+    </div>
+</body>
+<script type='text/javascript'>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            data1: [1, 3, 45, 6, 76, 33, 23, 3, 4],
+            data2: [
+                { name: '可帅', age: 28 },
+                { name: '耀志', age: 12 },
+                { name: '郝可', age: 24 },
+            ],
+        },
+        computed: {
+            //在输出data之前进行的编程
+            // 为了保护data1 所以不能直接return 操作this.data,需要赋值给sortdata1
+            sortdata1: function () {
+                return this.data1.sort(doData1)
+            },
+            sortdata2: function () {
+                return this.data2.sort(doData2)
+            }
+        }
+    })
+
+
+    function doData1(a, b) {
+        return a - b;
+    }
+
+    function doData2(a, b) {
+        return a.age - b.age;
+    }
+</script>
+
+</html>

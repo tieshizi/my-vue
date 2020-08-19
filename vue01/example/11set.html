@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='../assets/js/vue.js'></script>
+    <title>Vue全局操作set实例</title>
+</head>
+
+<body>
+    <h1>Vue全局操作set实例</h1>
+    <hr>
+    <div id="app">
+        <p>{{count}}</p>
+        <ul>
+            <li v-for='item in arr'>{{item}}</li>
+        </ul>
+    </div>
+
+    <p><button onclick="add()">改变</button></p>
+    <script type='text/javascript'>
+        // 在构造器外面声明数据，赋值给构造器，但是如果是数组，虚拟dom用下标和length改变数组的值的时候，vue(js)是监听不到的，需要用到Vue.set()
+        function add() {
+            app.arr[1] = '8097789798'
+            // Vue.set(app.arr, 1, '9999')
+        }
+        // 引用构造器外的数据
+        var outData = {
+            count: 1,
+            goods: 'car',
+            arr: ['aaa', 'bbb', 'ccc']
+        }
+        var app = new Vue({
+            el: '#app',
+            data: outData
+        })
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='../assets/js/vue.js'></script>
+    <title>v-bind实例</title>
+</head>
+
+<body>
+    <h1>v-bind实例</h1>
+    <hr>
+    <div id="app">
+        <p><img v-bind:src="imgSrc" width='200px'></p>
+        <p><a :href="myHref" target='_blank'>跳出去</a></p>
+        <!-- v-bind:XXX 缩写:XXX -->
+        <hr>
+        <div :class='className'>1绑定class</div>
+        <hr>
+        <div :class='{classA:isOk}'>2单选框判断某一属性值绑定class</div>
+        <p>
+            <input type="checkbox" id='red' value='true' v-model='isOk'>
+            <label for="red">{{isOk}}</label>
+        </p>
+        <div :class='isOk?classA:classB'>3三元表达式绑定class</div>
+        <hr>
+        <div :class='[classA,classC]'>4用数组绑定两个class</div>
+        <div :style='myStyle'>5用对象绑定style</div>
+
+    </div>
+</body>
+<style>
+    .classA {
+        color: red;
+    }
+
+    .classB {
+        color: yellowgreen;
+    }
+
+    .classC {
+        font-size: 22px;
+    }
+</style>
+<script type='text/javascript'>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            imgSrc: 'https://i0.hdslb.com/bfs/face/b8151976d1335b63922129f0b5af5ae884c7a4e5.jpg@150w_150h.jpg',
+            myHref: 'https://wwww.baidu.com',
+            className: 'classA',
+            isOk: false,
+            classA: 'classA',
+            classB: 'classB',
+            classC: 'classC',
+            myStyle: {
+                color: 'hotpink',
+                fontSize: '12px',
+            }
+        },
+    })
+</script>
+
+</html>

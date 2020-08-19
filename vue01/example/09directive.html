@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='../assets/js/vue.js'></script>
+    <title>directive实例</title>
+</head>
+
+<body>
+    <h1>directive实例</h1>
+    <hr>
+    <div id="app">
+        <div v-keke='color'>{{num}}</div>
+        <button @click='ADD'>ADD</button>
+    </div>
+    <button onclick='myUnbind()'>解绑</button>
+</body>
+<script type='text/javascript'>
+    // Vue.directive('keke', function (el, binding) {
+    //     el.style = 'color:' + binding.value;
+    // })
+    function myUnbind() {
+        app.$destroy();
+    }
+    Vue.directive('keke', {
+        bind: function (el, binding) {
+            console.log('被绑定')
+            el.style = 'color:' + binding.value
+        },
+        inserted: function () {
+            console.log('绑定到节点')
+        },
+        update: function () {
+            console.log('组件更新')
+        },
+        componentUpdated: function () {
+            console.log('组件更新完成')
+        },
+        unbind: function () {
+            console.log('解绑')
+        }
+    })
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            num: 10,
+            color: 'red'
+        },
+        methods: {
+            ADD: function () {
+                this.num++
+            }
+        }
+    })
+
+
+
+</script>
+
+</html>
